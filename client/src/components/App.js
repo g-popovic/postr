@@ -6,7 +6,7 @@ import { ExplorePage } from './explore-page/ExplorePage';
 import React from 'react';
 import { UserProvider } from '../provider/UserContext';
 import { NewPost } from './new-post-page/NewPost';
-import { OwnProfile } from './own-profile-page/OwnProfile';
+import { MyProfile } from './my-profile-page/MyProfile';
 
 function App() {
 	return (
@@ -17,7 +17,7 @@ function App() {
 					<Route path='/explore' element={<ExplorePage />} />
 					<Route path='/metamask' element={<Metamask />} />
 					<Route path='/new-post' element={<NewPost />} />
-					<Route path='/profile' element={<OwnProfile />} />
+					<Route path='/my-profile' element={<MyProfile />} />
 				</Routes>
 			</Router>
 		</UserProvider>
