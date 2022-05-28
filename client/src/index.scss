@@ -4,6 +4,11 @@ body {
 	padding: 0;
 }
 
+.no-scroll {
+	height: 100%;
+	overflow: hidden;
+}
+
 .btn {
 	border-radius: 10rem;
 }
@@ -38,7 +43,7 @@ body {
 }
 
 .sidebar-background-blur {
-	position: absolute;
+	position: fixed;
 	left: 0;
 	top: 0;
 	width: 100vw;
@@ -55,7 +60,7 @@ body {
 }
 
 .sidebar-container {
-	position: absolute;
+	position: fixed;
 	top: 0;
 	right: 0;
 	height: 100vh;
@@ -63,6 +68,7 @@ body {
 	backdrop-filter: blur(30px);
 	padding: 4rem 3rem;
 	background-color: rgba($color: #fff, $alpha: 0.1);
+	box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.1);
 
 	animation: slide-in 0.3s normal cubic-bezier(0.165, 0.84, 0.44, 1);
 
