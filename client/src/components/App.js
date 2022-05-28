@@ -1,9 +1,7 @@
+import ExplorePage from './explore-page/ExplorePage';
+
 function App() {
-	return (
-		<div>
-			<h1>Hello world</h1>
-		</div>
-	);
+    return <ExplorePage />;
 }
 
 export default App;
