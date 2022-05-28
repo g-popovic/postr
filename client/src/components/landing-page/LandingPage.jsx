@@ -1,11 +1,15 @@
 import './styles.scss';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import BackgroundImage from '../../assets/background.jpg';
+import { useNavigate } from 'react-router-dom';
+import { UserContext } from '../../provider/UserContext';
 
 export default function LandingPage() {
 	const [showFirstSlide, setShowFirstSlide] = useState(true);
 	const [showSecondSlide, setShowSecondSlide] = useState(false);
 	const [showFadeOutAnimation, setShowFadeOutAnimation] = useState(false);
+	const navigate = useNavigate();
+	const [userData, setUserData] = useContext(UserContext);
 
 	// TODO: Make this happen automatically or on scroll
 	function transitionToSecondSlide() {
@@ -15,6 +19,12 @@ export default function LandingPage() {
 
 	function onPressExplore() {
 		setShowFadeOutAnimation(true);
+		setTimeout(onAnimationEnd, 1200);
+	}
+
+	function onAnimationEnd() {
+		setUserData({ ...userData, showLandingPageIntro: true });
+		navigate('/explore');
 	}
 
 	return (

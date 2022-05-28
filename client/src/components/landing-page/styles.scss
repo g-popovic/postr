@@ -12,13 +12,11 @@
 	width: 100vw;
 	height: 100vh;
 	position: absolute;
-	// left: 50%;
-	// top: 50%;
 	object-fit: cover;
 	transform: scale(1.1);
 
 	&.fade-out {
-		transform: scale(4);
+		transform: scale(4) rotate(-90deg);
 		transition: 1200ms cubic-bezier(1, -0.06, 1, 0.14);
 	}
 }
