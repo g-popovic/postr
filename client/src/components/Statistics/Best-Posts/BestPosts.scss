@@ -1,0 +1,37 @@
+.best-posts-container-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.best-posts-container {
+    display: flex;
+    width: 60%;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(150px);
+    height: auto;
+    padding: 50px 0px;
+}
+
+.best-post-container {
+    width: 40%;
+    padding: 20px;
+    background-color: bisque;
+    height: auto;
+    color: #000000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.post-container-for-best-posts {
+    // padding: 0px 10px;
+}
+
+.post-container-best-posts {
+    display: flex;
+    flex-direction: column;
+}
