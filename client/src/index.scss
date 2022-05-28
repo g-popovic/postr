@@ -1,7 +1,11 @@
 html,
 body {
-    overscroll-behavior: none;
-    padding: 0;
+	overscroll-behavior: none;
+	padding: 0;
+}
+
+.btn {
+	border-radius: 10rem;
 }
 
 /**************************************REUSABLES**************************************/
@@ -9,27 +13,86 @@ body {
 /*****************************NAVBAR*****************************/
 
 .navbar-wrapper {
-    width: 75%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1.5rem 0;
-    margin: 0 auto 4rem;
+	width: 75%;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 2.5rem 0;
+	margin-bottom: 2rem;
 
-    .logo {
-        color: white;
-        font-weight: 400;
-    }
+	.logo {
+		color: white;
+		font-weight: 400;
+	}
 
-    .menu-button {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background-color: transparent;
-        color: white;
-        border: 2px solid white;
-        border-radius: 2rem;
-        padding: 0.6rem 3rem;
-        font-size: 1.3rem;
-    }
+	.menu-button {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		background-color: transparent;
+		color: white;
+		border: 2px solid white;
+		border-radius: 2rem;
+		padding: 0.6rem 3rem;
+	}
+}
+
+.sidebar-background-blur {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100vw;
+	height: 100vh;
+	background-color: rgba($color: #000000, $alpha: 0.3);
+	backdrop-filter: blur(8px);
+
+	animation: fade-in 0.2s normal ease-out;
+
+	&.closing {
+		transition: 0.2s ease-in;
+		opacity: 0;
+	}
+}
+
+.sidebar-container {
+	position: absolute;
+	top: 0;
+	right: 0;
+	height: 100vh;
+	min-width: 20rem;
+	backdrop-filter: blur(30px);
+	padding: 4rem 3rem;
+	background-color: rgba($color: #fff, $alpha: 0.1);
+
+	animation: slide-in 0.3s normal cubic-bezier(0.165, 0.84, 0.44, 1);
+
+	&.closing {
+		transition: 0.2s ease-in;
+		transform: translate(100%, 0);
+	}
+
+	.sidebar-btn-containers {
+		margin-top: 3rem;
+		button {
+			margin: 0.5rem 0;
+		}
+	}
+}
+
+@keyframes fade-in {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+@keyframes slide-in {
+	from {
+		transform: translate(100%, 0);
+	}
+	to {
+		transform: none;
+	}
 }
