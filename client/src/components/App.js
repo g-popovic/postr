@@ -1,7 +1,7 @@
 import LandingPage from './landing-page/LandingPage';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { Metamask } from './Metamask/Metamask';
-import ExplorePage from './explore-page/ExplorePage';
+import { ExplorePage } from './explore-page/ExplorePage';
 
 function App() {
     return (

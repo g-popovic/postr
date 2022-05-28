@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function Post() {
+export function Post() {
     return (
         <div className='wrapper'>
             <div className='title-container'>

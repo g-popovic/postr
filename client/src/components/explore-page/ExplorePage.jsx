@@ -1,9 +1,9 @@
 import React from 'react';
-import Navbar from '../Reusable/Navbar';
-import Post from '../Reusable/Post';
+import { Navbar } from '../Reusable/Navbar';
+import { Post } from '../Reusable/Post';
 import './explore.scss';
 
-export default function ExplorePage() {
+export function ExplorePage() {
     return (
         <div className='page-container'>
             <Navbar />
