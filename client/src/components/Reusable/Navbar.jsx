@@ -7,13 +7,14 @@ export function Navbar() {
 	function onOpenSidebar() {
 		setShowSidebar(true);
 		setSidebarIsClosing(false);
-		// document.querySelector("body").className += 'no-scroll'
+		document.querySelector('body').classList.add('no-scroll');
 	}
 
 	function onCloseSidebar() {
 		setSidebarIsClosing(true);
 		// After closing animation plays:
 		setTimeout(() => setShowSidebar(false), 300);
+		document.querySelector('body').classList.remove('no-scroll');
 	}
 
 	return (
