@@ -1,19 +1,17 @@
 import React from "react";
 import { Web3ReactProvider } from "@web3-react/core";
 import Web3 from "web3";
-import Button from "./button";
+import { MetamaskButton } from "./button";
 
-const Metamask = () => {
+export const Metamask = () => {
     function getLibrary(provider) {
         return new Web3(provider);
     }
     return (
         <div>
             <Web3ReactProvider getLibrary={getLibrary}>
-                <Button />
+                <MetamaskButton />
             </Web3ReactProvider>
         </div>
     );
 };
-
-export default Metamask;
