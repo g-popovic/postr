@@ -1,4 +1,5 @@
 html,
 body {
-	overscroll-behavior: none;
+    overscroll-behavior: none;
+    padding: 0;
 }
