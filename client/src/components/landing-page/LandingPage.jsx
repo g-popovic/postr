@@ -1,5 +1,5 @@
 import './styles.scss';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import BackgroundImage from '../../assets/background.jpg';
 
 export default function LandingPage() {
@@ -7,6 +7,7 @@ export default function LandingPage() {
 	const [showSecondSlide, setShowSecondSlide] = useState(false);
 	const [showFadeOutAnimation, setShowFadeOutAnimation] = useState(false);
 
+	// TODO: Make this happen automatically or on scroll
 	function transitionToSecondSlide() {
 		setShowFirstSlide(false);
 		setTimeout(() => setShowSecondSlide(true), 400);
