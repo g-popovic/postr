@@ -4,12 +4,15 @@
 	align-items: center;
 	justify-content: center;
 	width: 100%;
+
+	&:hover * {
+		color: #000;
+	}
 }
 
 .wallet-text {
 	font-size: 15px;
 	color: #ffffff;
-	font-weight: bold;
 }
 
 .metamask-image {

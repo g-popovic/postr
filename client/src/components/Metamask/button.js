@@ -1,37 +1,56 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import './Metamask.scss';
 import { injected } from './connectors';
 import icon from '../../statics/metamask-icon.png';
 import { useWeb3React } from '@web3-react/core';
 import Web3 from 'web3';
-import axios from 'axios';
+import { axiosApp } from '../../util/config';
 
-export const MetamaskButton = () => {
+export const MetamaskButton = ({ className }) => {
 	const { active, account, library, connector, activate, deactivate } = useWeb3React();
-	async function connect() {
+
+	async function connectWalletAndLogin() {
+		await connectMetamaskWallet();
+		await signNonceAndLogin();
+	}
+
+	async function signNonceAndLogin() {
 		if (!window.ethereum) {
-			alert('Install Metamask');
+			alert('Please install Metamask to use this app');
 		} else {
 			try {
-				await activate(injected).then(async res => {
-					const web3 = new Web3(window.ethereum);
-					await web3.eth.personal.sign('Hello world', account).then(async signature => {
-						console.log('signature', signature);
-						const res = await axios.post(
-							'http://localhost:3001/auth/sample-signature-verification',
-							{
-								signature,
-							},
-						);
-					});
+				await activate(injected);
+				const response = await axiosApp.get(`/auth/generate-nonce/${account}`);
+
+				// we need to sign this to authenticate
+				const nonce = response.data.nonce;
+
+				const web3 = new Web3(window.ethereum);
+				const signedNonce = await web3.eth.personal.sign(nonce, account);
+
+				console.log({ signedNonce });
+
+				await axiosApp.post('/auth/verify-signature-and-login', {
+					signature: signedNonce,
+					address: account,
 				});
+			} catch (err) {
+				console.log(err);
+				alert('Something went wrong!');
+			}
+		}
+	}
+
+	async function connectMetamaskWallet() {
+		if (localStorage?.getItem('isWalletConnected') === 'true') {
+			try {
+				await activate(injected);
 				localStorage.setItem('isWalletConnected', true);
 			} catch (err) {
 				console.log(err);
 			}
 		}
 	}
-
 	//   async function disconnect() {
 	//     try {
 	//       await deactivate(injected);
@@ -42,55 +61,22 @@ export const MetamaskButton = () => {
 	//       console.log(err);
 	//     }
 	//   }
-	useEffect(() => {
-		const connectWalletOnPageLoad = async () => {
-			if (localStorage?.getItem('isWalletConnected') === 'true') {
-				try {
-					await activate(injected);
-					localStorage.setItem('isWalletConnected', true);
-				} catch (err) {
-					console.log(err);
-				}
-			}
-		};
-		connectWalletOnPageLoad();
-	}, []);
-
-	// async function onClickSign() {
-	//     const web3 = await new Web3(window.ethereum);
-	//     web3.eth.personal.sign("Hello world", account).then((signature) => {
-	//         console.log("signature", signature);
-	//         console.log({ signature });
-	//     });
-	// }
-
-	// 	web3.eth.personal.sign('Hello world', account).then(async signature => {
-	// 		console.log('signature', signature);
-
-	// 		const res = await axios.post(
-	// 			'http://localhost:3001/auth/sample-signature-verification',
-	// 			{
-	// 				signature,
-	// 			},
-	// 		);
-	// 		console.log(res);
-	// 		console.log({ signature });
-	// 	});
-	// }
+	// useEffect(() => {
+	// connectMetamaskWallet;
+	// }, []);
 
 	return (
-		<div>
-			{/* <button onClick={onClickSign}>lcick me</button> */}
-			<button className='btn btn-rounded btn-outline-light metamask-btn' onClick={connect}>
-				<div className='metamask-image-container'>
-					<img src={icon} alt='metamask' className='metamask-image' />
-				</div>
-				{active === false ? (
-					<span className='wallet-text'>Connect wallet</span>
-				) : (
-					<span className='wallet-connected'>{account.slice(0, 13) + '...'}</span>
-				)}
-			</button>
-		</div>
+		<button
+			className={'btn btn-rounded btn-outline-light metamask-btn ' + (className || '')}
+			onClick={connectWalletAndLogin}>
+			<div className='metamask-image-container'>
+				<img src={icon} alt='metamask' className='metamask-image' />
+			</div>
+			{active === false ? (
+				<span className='wallet-text'>CONNECT WALLET</span>
+			) : (
+				<span className='wallet-connected'>{account.slice(0, 13) + '...'}</span>
+			)}
+		</button>
 	);
 };
