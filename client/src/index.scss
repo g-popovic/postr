@@ -1,5 +1,6 @@
 html,
 body {
+	font-family: 'Urbanist', sans-serif;
 	overscroll-behavior: none;
 	overflow: overlay;
 	padding: 0;
@@ -34,7 +35,7 @@ body {
 	justify-content: space-between;
 	padding: 2.5rem 0;
 	margin: 0 auto;
-	margin-bottom: 2rem;
+	margin-bottom: 0.5rem;
 
 	.logo {
 		color: white;

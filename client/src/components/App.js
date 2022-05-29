@@ -7,6 +7,7 @@ import { Route, Routes, BrowserRouter as Router } from 'react-router-dom';
 import LandingPage from './landing-page/LandingPage';
 import { ExplorePage } from './explore-page/ExplorePage';
 import { Metamask } from './Metamask/Metamask';
+import { Profile } from './profile-page/Profile';
 
 function App() {
 	return (
@@ -19,6 +20,7 @@ function App() {
 					<Route path='/new-post' element={<NewPost />} />
 					<Route path='/statistics' element={<Chart />} />
 					<Route path='/my-profile' element={<MyProfile />} />
+					<Route path='/profile' element={<Profile />} />
 				</Routes>
 			</Router>
 		</UserProvider>
