@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 export function Navbar() {
 	const [showSidebar, setShowSidebar] = useState(false);
@@ -31,16 +32,49 @@ export function Navbar() {
 					<div
 						onClick={onCloseSidebar}
 						className={
-							'sidebar-background-blur' + (sidebarIsClosing ? ' closing' : '')
-						}></div>
-					<div className={'sidebar-container' + (sidebarIsClosing ? ' closing' : '')}>
+							'sidebar-background-blur' +
+							(sidebarIsClosing ? ' closing' : '')
+						}
+					></div>
+					<div
+						className={
+							'sidebar-container' +
+							(sidebarIsClosing ? ' closing' : '')
+						}
+					>
 						<h5 className='text-white'>LOGO</h5>
 
 						<div className='d-flex flex-column sidebar-btn-containers'>
-							<button className='btn btn-outline-light'>BUTTON 1</button>
-							<button className='btn btn-outline-light'>BUTTON 2</button>
-							<button className='btn btn-outline-light'>BUTTON 3</button>
-							<button className='btn btn-outline-light'>BUTTON 4</button>
+							<Link
+								to='/my-profile'
+								className='link-btn btn btn-outline-light'
+							>
+								MY PROFILE
+							</Link>
+							<Link
+								to='/explore'
+								className='link-btn btn btn-outline-light'
+							>
+								EXPLORE
+							</Link>
+							<Link
+								to='/new-post'
+								className='link-btn btn btn-outline-light'
+							>
+								NEW POST
+							</Link>
+							<Link
+								to='/statistics'
+								className='link-btn btn btn-outline-light'
+							>
+								STATISTIC
+							</Link>
+							<Link
+								to='/'
+								className='link-btn btn btn-outline-light'
+							>
+								HOME
+							</Link>
 						</div>
 					</div>
 				</div>
