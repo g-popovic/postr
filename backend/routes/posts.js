@@ -6,7 +6,7 @@ const { authUser } = require('../middleware/auth');
 const MIN_NUMBER_OF_LIKES_FOR_REWARD = 100;
 const REWARD_PER_LIKE_IN_WEI = 100000000000; // 1 ether per 100,000 likes
 
-router.post('/new-post', authUser, async (req, res) => {
+router.post('/new', authUser, async (req, res) => {
 	try {
 		const newPost = new Post({
 			userId: req.user.id,
@@ -16,11 +16,12 @@ router.post('/new-post', authUser, async (req, res) => {
 		res.sendStatus(200);
 	} catch (err) {
 		res.sendStatus(500);
+		console.error(err);
 	}
 });
 
-router.get('/posts', async (req, res) => {
-	const posts = await Post.find().limit(50);
+router.get('/all', async (req, res) => {
+	const posts = await Post.find().populate('userId').sort({ created_at: -1 });
 	res.json({ posts });
 });
 

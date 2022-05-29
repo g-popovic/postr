@@ -1,4 +1,5 @@
 import { createContext, useEffect, useState } from 'react';
+import { axiosApp } from '../util/config';
 
 export const UserContext = createContext();
 
@@ -11,9 +12,9 @@ export function UserProvider({ children }) {
 
 	async function fetchAndSetUserData() {
 		try {
-			// const { data } = await axios.get('/auth/status');
+			const status = await axiosApp.get('/auth/status');
 			const data = {
-				address: 'placeholder',
+				...status.data,
 				showLandingPageIntro: false,
 			};
 			setUser(data);

@@ -5,10 +5,12 @@ const mongoose = require('mongoose');
 const session = require('express-session');
 const app = express();
 const authRoutes = require('./routes/auth');
+const postsRoutes = require('./routes/posts');
 
 app.use(
 	cors({
-		origin: '*',
+		origin: ['http://localhost:3002', 'http://localhost:3000'],
+		credentials: true,
 	}),
 );
 app.use(express.static('public'));
@@ -22,6 +24,7 @@ app.use(
 );
 
 app.use('/auth', authRoutes);
+app.use('/posts', postsRoutes);
 
 mongoose.connect(process.env.DATABASE_LINK, {
 	useNewUrlParser: true,

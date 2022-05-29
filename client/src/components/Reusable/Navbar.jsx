@@ -50,9 +50,7 @@ export function Navbar() {
 						</Link>
 
 						<div className='d-flex flex-column sidebar-btn-containers'>
-							<div style={{ margin: 'auto' }}>
-								<Metamask />
-							</div>
+							<Metamask className='link-btn' />
 
 							<Link
 								to='/my-profile'

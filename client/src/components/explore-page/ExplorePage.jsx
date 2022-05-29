@@ -1,22 +1,26 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { UserContext } from '../../provider/UserContext';
 import { Navbar } from '../Reusable/Navbar';
 import { Post } from '../Reusable/Post';
 import './explore.scss';
-import axios from 'axios';
+import { axiosApp } from '../../util/config';
 
 export function ExplorePage() {
 	const [data, setData] = useContext(UserContext);
+	const [posts, setPosts] = useState();
 
-	async function getData() {
+	async function getAndFetchPosts() {
 		try {
-			await axios.get('http://localhost:3001/posts').then(res => {
-				console.log(res);
-			});
+			const response = await axiosApp.get('/posts/all');
+			setPosts(response.data.posts);
 		} catch (err) {
 			console.log(err);
 		}
 	}
+
+	useEffect(() => {
+		getAndFetchPosts();
+	}, []);
 
 	useEffect(() => {
 		if (data.showLandingPageIntro) {
@@ -29,9 +33,11 @@ export function ExplorePage() {
 			<div className='page-container'>
 				<Navbar />
 				<div className='posts-container'>
-					<Post />
-					<Post />
-					<Post />
+					{!posts ? (
+						<h4 className='text-center text-light h-100'>Loading...</h4>
+					) : (
+						posts.map(post => <Post post={post} />)
+					)}
 				</div>
 			</div>
 			{data.showLandingPageIntro && <div className='intro-overlay' />}
