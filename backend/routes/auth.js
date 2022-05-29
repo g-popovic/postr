@@ -37,6 +37,10 @@ function generateRandomUsername() {
 	return 'User #' + Math.floor(Math.random() * 1000);
 }
 
+router.get('/status', (req, res) => {
+	res.json(req.session.user);
+});
+
 router.get('/generate-nonce/:address', async (req, res) => {
 	const { address } = req.params;
 

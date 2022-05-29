@@ -32,6 +32,7 @@ export function ExplorePage() {
         }
     }, [data]);
 
+
     return (
         <>
             <div className="page-container">

@@ -7,11 +7,10 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	justify-content: center;
 
 	.bio {
 		width: 75%;
-		margin: 0 auto;
+		margin: 0 auto 3rem;
 		background-color: #bdbdbd2a;
 		border-radius: 0.4rem;
 		padding: 1rem 2rem 1.5rem;
@@ -28,7 +27,7 @@
 		}
 		.bio-username {
 			font-size: 1.7rem;
-			font-weight: 350;
+			font-weight: 300;
 			margin: 0;
 			margin-bottom: 2rem;
 			padding: 0;
@@ -67,7 +66,7 @@
 			width: 100%;
 			padding: 1.3rem 2rem;
 			border-radius: 0.4rem;
-			min-height: 10rem;
+			min-height: 7rem;
 			background-color: #bdbdbd18;
 			border: 1px solid transparent;
 			color: #fff;
@@ -87,7 +86,6 @@
 				border-radius: 2rem;
 				margin: 0 auto;
 				padding: 0.6rem 3rem;
-				font-size: 1.3rem;
 				margin: 0 0.7rem;
 			}
 			button:hover {

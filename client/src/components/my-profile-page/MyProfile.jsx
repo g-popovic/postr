@@ -30,6 +30,7 @@ export function MyProfile() {
         setTextValue(e.target.value);
     }
 
+
     function handleClick() {
         setEdit((prevValue) => !prevValue);
     }

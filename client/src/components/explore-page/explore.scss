@@ -18,7 +18,7 @@ body {
 }
 .posts-container {
 	width: 75%;
-	margin: 3rem auto;
+	margin: 0 auto;
 
 	.wrapper {
 		background-color: #bdbdbd2a;
@@ -30,6 +30,7 @@ body {
 		margin-bottom: 2rem;
 		color: #fff;
 		align-items: left;
+		font-weight: 300;
 
 		:last-child {
 			margin-bottom: 0;
@@ -47,12 +48,18 @@ body {
 				margin: 0.4rem;
 			}
 			.username {
-				font-weight: 350;
+				font-weight: 400;
 				display: flex;
 				align-items: center;
 				justify-content: center;
 				margin-left: 0.5rem;
+				text-decoration: none;
+				font-size: 1.1rem;
 			}
+		}
+		a {
+			text-decoration: none;
+			color: white;
 		}
 		.post-content {
 			flex: 1;
@@ -62,6 +69,13 @@ body {
 			flex: 1;
 			display: flex;
 			align-items: center;
+
+			button {
+				background-color: transparent;
+				color: white;
+				border: none;
+				font-size: 1.3rem;
+			}
 
 			span {
 				margin-left: 0.7rem;
