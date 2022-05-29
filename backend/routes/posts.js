@@ -6,6 +6,24 @@ const { authUser } = require('../middleware/auth');
 const MIN_NUMBER_OF_LIKES_FOR_REWARD = 100;
 const REWARD_PER_LIKE_IN_WEI = 100000000000; // 1 ether per 100,000 likes
 
+router.post('/new-post', authUser, async (req, res) => {
+	try {
+		const newPost = new Post({
+			userId: req.user.id,
+			content: req.body.text,
+		});
+		await newPost.save();
+		res.sendStatus(200);
+	} catch (err) {
+		res.sendStatus(500);
+	}
+});
+
+router.get('/posts', async (req, res) => {
+	const posts = await Post.find().limit(50);
+	res.json({ posts });
+});
+
 router.post('/toggle-like/:postId', authUser, async (req, res) => {
 	const userId = req.user.id;
 	const { postId } = req.params;

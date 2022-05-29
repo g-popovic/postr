@@ -3,9 +3,9 @@ import './Metamask.scss';
 import { injected } from './connectors';
 import icon from '../../statics/metamask-icon.png';
 import { useWeb3React } from '@web3-react/core';
-// import Web3 from "web3";
+import Web3 from 'web3';
+
 export const MetamaskButton = () => {
-	//   const web3 = await new Web3().currentProvider;
 	const { active, account, library, connector, activate, deactivate } = useWeb3React();
 	async function connect() {
 		if (!window.ethereum) {
@@ -44,8 +44,18 @@ export const MetamaskButton = () => {
 		connectWalletOnPageLoad();
 	}, []);
 
+	async function onClickSign() {
+		const web3 = await new Web3(window.ethereum);
+
+		web3.eth.personal.sign('Hello world', account).then(signature => {
+			console.log('signature', signature);
+			console.log({ signature });
+		});
+	}
+
 	return (
 		<div>
+			<button onClick={onClickSign}>lcick me</button>
 			<button className='container' onClick={connect}>
 				<div className='metamask-image-container'>
 					<img src={icon} alt='metamask' className='metamask-image' />
