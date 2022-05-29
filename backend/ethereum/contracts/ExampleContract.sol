@@ -2,9 +2,9 @@
 pragma solidity 0.8.14;
 
 contract ExampleContract {
-    uint public number = 0;
+    uint256 public number = 0;
 
-    function setNumber(uint _number) public {
+    function setNumber(uint256 _number) public {
         number = _number;
     }
 }
