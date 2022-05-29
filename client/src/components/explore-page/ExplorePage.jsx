@@ -42,7 +42,7 @@ export function ExplorePage() {
                             Loading...
                         </h4>
                     ) : (
-                        posts.map((post) => <Post post={post} />)
+                        posts.map((post) => <Post data={post} />)
                     )}
                 </div>
             </div>

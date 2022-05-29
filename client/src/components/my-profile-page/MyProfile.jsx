@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { Navbar } from "../Reusable/Navbar";
 import { Post } from "../Reusable/Post";
 import "./my-profile.scss";
+import guy from "../../assets/guy.jpg";
 import { axiosApp } from "../../util/config";
 export function MyProfile() {
     const [edit, setEdit] = useState(false);
@@ -38,11 +39,7 @@ export function MyProfile() {
             <div className="my-page-container">
                 <Navbar />
                 <div className="bio">
-                    <img
-                        className="bio-img"
-                        src="https://i1.sndcdn.com/avatars-000508491087-32hktm-t500x500.jpg"
-                        alt="avatar"
-                    />
+                    <img className="bio-img" src={guy} alt="avatar" />
                     <h1 className="bio-username">Uros Stesevic</h1>
                     {!edit && (
                         <div>
