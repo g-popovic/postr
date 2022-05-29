@@ -1,5 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
+import { axiosApp } from '../../util/config';
 import { Navbar } from '../Reusable/Navbar';
 import './new-post.scss';
 
@@ -8,6 +9,16 @@ export function NewPost() {
 
 	function handleChange(e) {
 		setText(e.target.value);
+	}
+
+	async function onSubmit() {
+		try {
+			await axiosApp.post('/posts/new', { text });
+			setText('');
+		} catch (err) {
+			alert('Something went wrong');
+			console.error(err);
+		}
 	}
 
 	return (
@@ -23,7 +34,7 @@ export function NewPost() {
 						autoComplete='off'
 						placeholder='What do you want to post about? Remember, you can only post once every 24 hours.'
 					/>
-					<button>POST</button>
+					<button onClick={onSubmit}>POST</button>
 				</div>
 			</div>
 		</div>
