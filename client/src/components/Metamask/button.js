@@ -4,6 +4,7 @@ import { injected } from './connectors';
 import icon from '../../statics/metamask-icon.png';
 import { useWeb3React } from '@web3-react/core';
 import Web3 from 'web3';
+import axios from 'axios';
 
 export const MetamaskButton = () => {
 	const { active, account, library, connector, activate, deactivate } = useWeb3React();
@@ -47,8 +48,16 @@ export const MetamaskButton = () => {
 	async function onClickSign() {
 		const web3 = await new Web3(window.ethereum);
 
-		web3.eth.personal.sign('Hello world', account).then(signature => {
+		web3.eth.personal.sign('Hello world', account).then(async signature => {
 			console.log('signature', signature);
+
+			const res = await axios.post(
+				'http://localhost:3001/auth/sample-signature-verification',
+				{
+					signature,
+				},
+			);
+			console.log(res);
 			console.log({ signature });
 		});
 	}
