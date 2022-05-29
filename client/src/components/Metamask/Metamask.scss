@@ -32,3 +32,15 @@
     color: #ffffff;
     font-size: 14px;
 }
+
+.metamask-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.network-name {
+    font-size: 15px;
+    color: #ffffff;
+}

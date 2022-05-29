@@ -1,9 +1,10 @@
 .chart-container {
-	display: flex;
-	flex-direction: column;
-	width: 30%;
-	height: auto;
-	margin-top: 5%;
-	margin-left: 15%;
-	color: #fff;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    height: auto;
+    color: #fff;
+    justify-content: center;
+    align-items: center;
 }

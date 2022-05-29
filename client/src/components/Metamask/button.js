@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./Metamask.scss";
 import { injected } from "./connectors";
 import icon from "../../statics/metamask-icon.png";
@@ -7,8 +7,16 @@ import Web3 from "web3";
 import axios from "axios";
 
 export const MetamaskButton = () => {
-    const { active, account, library, connector, activate, deactivate } =
-        useWeb3React();
+    const {
+        active,
+        account,
+        library,
+        connector,
+        activate,
+        deactivate,
+        networkId,
+    } = useWeb3React();
+    const [network, setNetwork] = useState("");
     async function connect() {
         if (!window.ethereum) {
             alert("Install Metamask");
@@ -82,8 +90,7 @@ export const MetamaskButton = () => {
     // }
 
     return (
-        <div>
-            {/* <button onClick={onClickSign}>lcick me</button> */}
+        <div className="metamask-container">
             <button className="container" onClick={connect}>
                 <div className="metamask-image-container">
                     <img src={icon} alt="metamask" className="metamask-image" />
@@ -96,6 +103,8 @@ export const MetamaskButton = () => {
                     </div>
                 )}
             </button>
+
+            <span className="network-name">Hello: {network}</span>
         </div>
     );
 };
