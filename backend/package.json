@@ -10,6 +10,9 @@
 	"author": "",
 	"license": "ISC",
 	"dependencies": {
+		"cors": "^2.8.5",
+		"mongoose": "^6.3.4",
+		"nodemon": "^2.0.16",
 		"@truffle/hdwallet-provider": "^2.0.8",
 		"dotenv": "^16.0.1",
 		"express": "^4.18.1",
