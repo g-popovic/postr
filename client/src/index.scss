@@ -87,6 +87,12 @@ body {
 	box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.1);
 
 	animation: slide-in 0.3s normal cubic-bezier(0.165, 0.84, 0.44, 1);
+	text-align: center;
+
+	.text-white {
+		text-decoration: none;
+		font-size: 1.2rem;
+	}
 
 	&.closing {
 		transition: 0.2s ease-in;

@@ -35,10 +35,19 @@ export function Navbar() {
 					<div
 						onClick={onCloseSidebar}
 						className={
-							'sidebar-background-blur' + (sidebarIsClosing ? ' closing' : '')
-						}></div>
-					<div className={'sidebar-container' + (sidebarIsClosing ? ' closing' : '')}>
-						<h5 className='text-white'>LOGO</h5>
+							'sidebar-background-blur' +
+							(sidebarIsClosing ? ' closing' : '')
+						}
+					></div>
+					<div
+						className={
+							'sidebar-container' +
+							(sidebarIsClosing ? ' closing' : '')
+						}
+					>
+						<Link to='/' className='text-white'>
+							LOGO
+						</Link>
 
 						<div className='d-flex flex-column sidebar-btn-containers'>
 							<div style={{ margin: 'auto' }}>
@@ -48,31 +57,36 @@ export function Navbar() {
 							<Link
 								to='/my-profile'
 								className='link-btn btn btn-outline-light'
-								onClick={onCloseSidebar}>
+								onClick={onCloseSidebar}
+							>
 								MY PROFILE
 							</Link>
 							<Link
 								to='/explore'
 								className='link-btn btn btn-outline-light'
-								onClick={onCloseSidebar}>
+								onClick={onCloseSidebar}
+							>
 								EXPLORE
 							</Link>
 							<Link
 								to='/new-post'
 								className='link-btn btn btn-outline-light'
-								onClick={onCloseSidebar}>
+								onClick={onCloseSidebar}
+							>
 								NEW POST
 							</Link>
 							<Link
 								to='/statistics'
 								className='link-btn btn btn-outline-light'
-								onClick={onCloseSidebar}>
+								onClick={onCloseSidebar}
+							>
 								STATISTIC
 							</Link>
 							<Link
 								to='/'
 								className='link-btn btn btn-outline-light'
-								onClick={onCloseSidebar}>
+								onClick={onCloseSidebar}
+							>
 								HOME
 							</Link>
 						</div>
