@@ -29,8 +29,6 @@ export function ExplorePage() {
 		}
 	}, [data]);
 
-	console.log({ posts });
-
 	return (
 		<>
 			<div className='page-container'>

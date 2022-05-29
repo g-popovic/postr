@@ -1,9 +1,10 @@
 const Post = require('../models/post.model');
 const express = require('express');
 const router = express.Router();
+const { triggerSendingRewards } = require('../util/web3');
 const { authUser } = require('../middleware/auth');
 
-const MIN_NUMBER_OF_LIKES_FOR_REWARD = 100;
+const MIN_NUMBER_OF_LIKES_FOR_REWARD = 0;
 const REWARD_PER_LIKE_IN_WEI = 100000000000; // 1 ether per 100,000 likes
 
 router.post('/new', authUser, async (req, res) => {
@@ -38,7 +39,7 @@ router.post('/toggle-like/:postId', authUser, async (req, res) => {
 		// Check if user has already like post
 		if (post.likes.includes(userId)) {
 			// Unlike post
-			post.likes = post.likes.filter(likeUseId => likeUseId !== userId);
+			post.likes = post.likes.filter(likeUseId => likeUseId.toString() !== userId);
 			await post.save();
 		} else {
 			// Like post
@@ -52,8 +53,7 @@ router.post('/toggle-like/:postId', authUser, async (req, res) => {
 				post.likes.length - post.numberOfLikesWhenLastRewardSent >
 				MIN_NUMBER_OF_LIKES_FOR_REWARD
 			) {
-				// TODO: Fetch user data in addition to post data in order to get wallet address
-				triggerSendingRewards(post.wallet, post.likes.length, REWARD_PER_LIKE_IN_WEI)
+				triggerSendingRewards(post.userId.wallet, post.likes.length, REWARD_PER_LIKE_IN_WEI)
 					.then(() => {
 						console.log('Triggered reward withdrawl');
 					})
@@ -61,6 +61,9 @@ router.post('/toggle-like/:postId', authUser, async (req, res) => {
 						console.error('Error triggering reward withdrawl', err);
 					});
 			}
+
+			// save post
+			await post.save();
 		}
 		res.sendStatus(200);
 	} catch (err) {
