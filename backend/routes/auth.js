@@ -35,10 +35,23 @@ function generateRandomUsername() {
 router.get('/generate-nonce', async (req, res) => {
 	const { address } = req.body;
 
+	const nonce = generateNonce();
+
+	const existingUser = User.findOne({
+		address,
+	});
+
+	if (existingUser) {
+		existingUser.nonce = nonce;
+		existingUser.save();
+	} else {
+		req.session.nonce = nonce;
+	}
+
 	res.json({ nonce });
 });
 
-router.post('/verify-signature', async (req, res) => {
+router.post('/verify-signature-and-login', async (req, res) => {
 	const { signature, address } = req.body;
 
 	// Data validation
@@ -71,10 +84,12 @@ router.post('/verify-signature', async (req, res) => {
 	}
 });
 
-router.get('/sample-signature-verification', async (req, res) => {
+router.post('/sample-signature-verification', async (req, res) => {
 	const nonce = 'Hello world';
-	const signingAddress = web3.eth.accounts.recover(nonce, signature);
-	console.log(signingAddress);
+
+	const signingAddress = web3.eth.accounts.recover(nonce, req.body.signature);
+
+	console.log({ signingAddress });
 	res.send(signingAddress);
 });
 

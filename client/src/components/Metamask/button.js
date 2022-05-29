@@ -4,6 +4,7 @@ import { injected } from "./connectors";
 import icon from "../../statics/metamask-icon.png";
 import { useWeb3React } from "@web3-react/core";
 import Web3 from "web3";
+import axios from "axios";
 
 export const MetamaskButton = () => {
     const { active, account, library, connector, activate, deactivate } =
@@ -13,7 +14,20 @@ export const MetamaskButton = () => {
             alert("Install Metamask");
         } else {
             try {
-                await activate(injected);
+                await activate(injected).then(async (res) => {
+                    const web3 = new Web3(window.ethereum);
+                    await web3.eth.personal
+                        .sign("Hello world", account)
+                        .then(async (signature) => {
+                            console.log("signature", signature);
+                            const res = await axios.post(
+                                "http://localhost:3001/auth/sample-signature-verification",
+                                {
+                                    signature,
+                                }
+                            );
+                        });
+                });
                 localStorage.setItem("isWalletConnected", true);
             } catch (err) {
                 console.log(err);
@@ -45,13 +59,27 @@ export const MetamaskButton = () => {
         connectWalletOnPageLoad();
     }, []);
 
-    async function onClickSign() {
-        const web3 = await new Web3(window.ethereum);
-        web3.eth.personal.sign("Hello world", account).then((signature) => {
-            console.log("signature", signature);
-            console.log({ signature });
-        });
-    }
+    // async function onClickSign() {
+    //     const web3 = await new Web3(window.ethereum);
+    //     web3.eth.personal.sign("Hello world", account).then((signature) => {
+    //         console.log("signature", signature);
+    //         console.log({ signature });
+    //     });
+    // }
+
+    // 	web3.eth.personal.sign('Hello world', account).then(async signature => {
+    // 		console.log('signature', signature);
+
+    // 		const res = await axios.post(
+    // 			'http://localhost:3001/auth/sample-signature-verification',
+    // 			{
+    // 				signature,
+    // 			},
+    // 		);
+    // 		console.log(res);
+    // 		console.log({ signature });
+    // 	});
+    // }
 
     return (
         <div>
