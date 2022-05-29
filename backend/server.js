@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
+const session = require('express-session');
 const app = express();
 const authRoutes = require('./routes/auth');
 
@@ -12,6 +13,13 @@ app.use(
 );
 app.use(express.static('public'));
 app.use(express.json());
+app.use(
+	session({
+		secret: process.env.SESSION_SECRET,
+		saveUninitialized: false,
+		resave: false,
+	}),
+);
 
 app.use('/auth', authRoutes);
 

@@ -1,13 +1,13 @@
 const Post = require('../models/post.model');
 const express = require('express');
 const router = express.Router();
+const { authUser } = require('../middleware/auth');
 
 const MIN_NUMBER_OF_LIKES_FOR_REWARD = 100;
 const REWARD_PER_LIKE_IN_WEI = 100000000000; // 1 ether per 100,000 likes
 
-router.post('/toggle-like/:postId', async (req, res) => {
-	// TODO: Use middleware and proper authentication
-	const userId = 'xxx';
+router.post('/toggle-like/:postId', authUser, async (req, res) => {
+	const userId = req.user.id;
 	const { postId } = req.params;
 
 	const post = await Post.findById(postId);
