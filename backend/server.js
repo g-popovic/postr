@@ -3,6 +3,7 @@ const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const app = express();
+const authRoutes = require('./routes/auth');
 
 app.use(
 	cors({
@@ -10,7 +11,9 @@ app.use(
 	}),
 );
 app.use(express.static('public'));
-app.user(express.json());
+app.use(express.json());
+
+app.use('/auth', authRoutes);
 
 mongoose.connect(process.env.DATABASE_LINK, {
 	useNewUrlParser: true,

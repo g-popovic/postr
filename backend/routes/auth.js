@@ -1,11 +1,17 @@
 const express = require('express');
 const { randomBytes } = require('crypto');
 const User = require('../models/user.model');
+const { web3 } = require('../util/web3.config');
 const router = express.Router();
 
-router.get('/verify-signature', async (req, res) => {
+router.post('/verify-signature', async (req, res) => {
 	const { signature } = req.body;
+	if (!signature) {
+		res.status(400).send('Signature not found');
+	}
 	const signingAddress = web3.eth.accounts.recover('Hello world', signature);
 	console.log({ signingAddress, signature });
+	res.sendStatus(200);
 });
+
 module.exports = router;
