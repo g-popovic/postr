@@ -9,7 +9,10 @@ export function ExplorePage() {
 
 	useEffect(() => {
 		if (data.showLandingPageIntro) {
-			setData({ ...data, showLandingPageIntro: false });
+			setTimeout(
+				() => setData({ ...data, showLandingPageIntro: false }),
+				2500
+			);
 		}
 	}, [data]);
 

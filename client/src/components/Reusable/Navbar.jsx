@@ -21,7 +21,9 @@ export function Navbar() {
 	return (
 		<>
 			<div className='navbar-wrapper'>
-				<h3 className='logo'>LOGO</h3>
+				<Link to='/' className='logo'>
+					LOGO
+				</Link>
 				<button className='menu-button' onClick={onOpenSidebar}>
 					MENU
 				</button>
