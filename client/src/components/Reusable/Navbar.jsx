@@ -48,30 +48,35 @@ export function Navbar() {
 							<Link
 								to='/my-profile'
 								className='link-btn btn btn-outline-light'
+								onClick={onCloseSidebar}
 							>
 								MY PROFILE
 							</Link>
 							<Link
 								to='/explore'
 								className='link-btn btn btn-outline-light'
+								onClick={onCloseSidebar}
 							>
 								EXPLORE
 							</Link>
 							<Link
 								to='/new-post'
 								className='link-btn btn btn-outline-light'
+								onClick={onCloseSidebar}
 							>
 								NEW POST
 							</Link>
 							<Link
 								to='/statistics'
 								className='link-btn btn btn-outline-light'
+								onClick={onCloseSidebar}
 							>
 								STATISTIC
 							</Link>
 							<Link
 								to='/'
 								className='link-btn btn btn-outline-light'
+								onClick={onCloseSidebar}
 							>
 								HOME
 							</Link>

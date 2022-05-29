@@ -2,6 +2,15 @@ html,
 body {
 	overscroll-behavior: none;
 	padding: 0;
+	margin: 0;
+	background: rgb(3, 148, 255);
+	background: linear-gradient(
+		20deg,
+		rgba(3, 148, 255, 1) -5%,
+		rgba(2, 0, 65, 1) 25%,
+		rgba(2, 0, 65, 1) 80%,
+		rgba(254, 0, 160, 1) 110%
+	);
 }
 
 .no-scroll {
