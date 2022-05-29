@@ -36,31 +36,30 @@ body {
 			margin-bottom: 0;
 		}
 
+		.username-container {
+			display: flex;
+			flex-direction: row;
+
+			.profile-img {
+				height: 2.2rem;
+				width: 2.2rem;
+				border-radius: 50%;
+				background-color: transparent;
+				margin: 0.4rem;
+			}
+			.username {
+				font-weight: 400;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				margin-left: 0.5rem;
+				text-decoration: none;
+				font-size: 1.1rem;
+			}
+		}
 		a {
 			text-decoration: none;
 			color: white;
-
-			.username-container {
-				display: flex;
-				flex-direction: row;
-
-				.profile-img {
-					height: 2.2rem;
-					width: 2.2rem;
-					border-radius: 50%;
-					background-color: transparent;
-					margin: 0.4rem;
-				}
-				.username {
-					font-weight: 400;
-					display: flex;
-					align-items: center;
-					justify-content: center;
-					margin-left: 0.5rem;
-					text-decoration: none;
-					font-size: 1.1rem;
-				}
-			}
 		}
 		.post-content {
 			flex: 1;

@@ -13,10 +13,7 @@ export function UserProvider({ children }) {
 	async function fetchAndSetUserData() {
 		try {
 			const status = await axiosApp.get('/auth/status');
-			const data = {
-				...status.data,
-				showLandingPageIntro: false,
-			};
+			const data = status.data;
 			setUser(data);
 		} catch (err) {
 			console.error(err);

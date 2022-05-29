@@ -1,12 +1,15 @@
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import './Metamask.scss';
 import { injected } from './connectors';
 import icon from '../../statics/metamask-icon.png';
 import { useWeb3React } from '@web3-react/core';
 import Web3 from 'web3';
 import { axiosApp } from '../../util/config';
+import { UserContext } from '../../provider/UserContext';
 
 export const MetamaskButton = ({ className }) => {
+	const [_, setUserData] = useContext(UserContext);
+
 	const { active, account, library, connector, activate, deactivate } = useWeb3React();
 
 	async function connectWalletAndLogin() {
@@ -35,6 +38,9 @@ export const MetamaskButton = ({ className }) => {
 					signature: signedNonce,
 					address: accounts[0],
 				});
+
+				const { data: userData } = await axiosApp.get('/auth/status');
+				setUserData(userData);
 			} catch (err) {
 				console.log(err);
 				alert('Something went wrong!');

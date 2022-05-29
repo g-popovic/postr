@@ -18,7 +18,7 @@ export function MyProfile() {
 	}
 
 	function handleClick() {
-		setEdit((prevValue) => !prevValue);
+		setEdit(prevValue => !prevValue);
 	}
 
 	return (
@@ -36,16 +36,14 @@ export function MyProfile() {
 						<div>
 							<button
 								class='fa-solid fa-pen-to-square'
-								onClick={handleClick}
-							></button>
+								onClick={handleClick}></button>
 						</div>
 					)}
 					{!edit && (
 						<div>
 							<p>
-								Lorem ipsum is placeholder text commonly used in
-								the graphic, print, and publishing industries
-								for previewing layouts and visual mockups.
+								Lorem ipsum is placeholder text commonly used in the graphic, print,
+								and publishing industries for previewing layouts and visual mockups.
 							</p>
 						</div>
 					)}

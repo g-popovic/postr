@@ -1,9 +1,29 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Navbar } from '../Reusable/Navbar';
 import { Post } from '../Reusable/Post';
 import '../my-profile-page/my-profile.scss';
+import { axiosApp } from '../../util/config';
+import { UserContext } from '../../provider/UserContext';
 
-export function Profile() {
+export function Profile({ canEdit }) {
+	const [userData] = useContext(UserContext);
+	const [posts, setPosts] = useState();
+
+	async function getAndFetchPosts() {
+		try {
+			const response = await axiosApp.get('/posts/all');
+			setPosts(response.data.posts);
+		} catch (err) {
+			console.log(err);
+		}
+	}
+
+	useEffect(() => {
+		getAndFetchPosts();
+	}, []);
+
+	console.log(userData);
+
 	return (
 		<>
 			<div className='my-page-container'>
@@ -18,16 +38,17 @@ export function Profile() {
 
 					<div>
 						<p>
-							Lorem ipsum is placeholder text commonly used in the
-							graphic, print, and publishing industries for
-							previewing layouts and visual mockups.
+							Lorem ipsum is placeholder text commonly used in the graphic, print, and
+							publishing industries for previewing layouts and visual mockups.
 						</p>
 					</div>
 				</div>
 				<div className='posts-container'>
-					<Post />
-					<Post />
-					<Post />
+					{!posts ? (
+						<h4 className='text-center text-light h-100'>Loading...</h4>
+					) : (
+						posts.map(post => <Post post={post} />)
+					)}
 				</div>
 			</div>
 		</>

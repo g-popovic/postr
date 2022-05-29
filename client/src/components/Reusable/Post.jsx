@@ -3,18 +3,20 @@ import { UserContext } from '../../provider/UserContext';
 
 export function Post({ post }) {
 	const [userData] = useContext(UserContext);
-	const [isLiked, setIsLiked] = useState(post.likes.find(like => like === userData.user.id));
+	const [isLiked, setIsLiked] = useState(
+		post && post.likes && post.likes.find(like => like === userData.user.id),
+	);
 
 	if (!post) {
 		return null;
 	}
 
 	function onClickLike() {
-		// if (userData.user) {
-		setIsLiked(prev => !prev);
-		// } else {
-		// alert('LOGIN');
-		// }
+		if (userData.user) {
+			setIsLiked(prev => !prev);
+		} else {
+			alert('You need to login to like posts');
+		}
 	}
 
 	return (
@@ -31,7 +33,8 @@ export function Post({ post }) {
 			<div className='likes'>
 				<button
 					onClick={onClickLike}
-					class={isLiked ? 'fa-solid fa-heart' : 'fa-regular fa-heart'}></button>{' '}
+					class={isLiked ? 'fa-solid fa-heart' : 'fa-regular fa-heart'}></button>
+				<span>{post.likes.length + (isLiked ? 1 : 0)} likes</span>
 			</div>
 		</div>
 	);
