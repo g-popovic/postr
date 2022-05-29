@@ -1,13 +1,17 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { UserContext } from '../../provider/UserContext';
 import { Navbar } from '../Reusable/Navbar';
 import { Post } from '../Reusable/Post';
 import './explore.scss';
 
 export function ExplorePage() {
-	const [data] = useContext(UserContext);
+	const [data, setData] = useContext(UserContext);
 
-	console.log(data);
+	useEffect(() => {
+		if (data.showLandingPageIntro) {
+			setData({ ...data, showLandingPageIntro: false });
+		}
+	}, [data]);
 
 	return (
 		<>
