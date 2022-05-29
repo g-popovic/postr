@@ -29,7 +29,7 @@ router.post('/toggle-like/:postId', authUser, async (req, res) => {
 	const userId = req.user.id;
 	const { postId } = req.params;
 
-	const post = await Post.findById(postId);
+	const post = await Post.findById(postId).populate('userId');
 	if (!post) {
 		return res.sendStatus(404);
 	}

@@ -6,6 +6,8 @@ export const UserContext = createContext();
 export function UserProvider({ children }) {
 	const [user, setUser] = useState({});
 
+	console.log(user);
+
 	useEffect(() => {
 		fetchAndSetUserData();
 	}, []);
@@ -20,13 +22,5 @@ export function UserProvider({ children }) {
 		}
 	}
 
-	return !user ? (
-		<div className='center'>
-			<div className='spinner-border' role='status'>
-				<span className='visually-hidden'>Loading...</span>
-			</div>
-		</div>
-	) : (
-		<UserContext.Provider value={[user, setUser]}>{children}</UserContext.Provider>
-	);
+	return <UserContext.Provider value={[user, setUser]}>{children}</UserContext.Provider>;
 }

@@ -22,8 +22,6 @@ export function Profile({ canEdit }) {
 		getAndFetchPosts();
 	}, []);
 
-	console.log(userData);
-
 	return (
 		<>
 			<div className='my-page-container'>
