@@ -1,0 +1,106 @@
+.my-page-container {
+	width: 100%;
+	height: 100%;
+	min-height: 100vh;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	background: rgb(3, 148, 255);
+	background: linear-gradient(
+		45deg,
+		rgba(3, 148, 255, 1) 0%,
+		rgba(2, 0, 65, 1) 20%,
+		rgba(2, 0, 65, 1) 80%,
+		rgba(254, 0, 160, 1) 100%
+	);
+
+	.bio {
+		width: 75%;
+		margin: 0 auto;
+		background-color: #bdbdbd2a;
+		border-radius: 0.4rem;
+		padding: 1rem 2rem 1.5rem;
+		color: #fff;
+		text-align: center;
+		position: relative;
+
+		.bio-img {
+			height: 3.4rem;
+			width: 3.4rem;
+			border-radius: 50%;
+			background-color: transparent;
+			margin: 0.4rem;
+		}
+		.bio-username {
+			font-size: 1.7rem;
+			font-weight: 350;
+			margin: 0;
+			margin-bottom: 2rem;
+			padding: 0;
+		}
+
+		.fa-solid {
+			background-color: transparent;
+			border: none;
+			color: #fff;
+			font-size: 1.35rem;
+			font-weight: 200;
+			position: absolute;
+			top: 1.5rem;
+			right: 2rem;
+		}
+
+		.edit-button:hover {
+			background-color: rgba(189, 189, 189, 0.048);
+		}
+
+		input {
+			padding: 0.6rem 1rem;
+			border-radius: 0.4rem;
+			background-color: transparent;
+			border: 1px solid #020041a9;
+			color: #fff;
+			margin-bottom: 2rem;
+		}
+		input:focus {
+			outline: none !important;
+			border: 1px solid #020041a9;
+		}
+
+		textarea {
+			resize: none;
+			width: 100%;
+			padding: 1.3rem 2rem;
+			border-radius: 0.4rem;
+			min-height: 10rem;
+			background-color: #bdbdbd18;
+			border: 1px solid transparent;
+			color: #fff;
+		}
+		textarea:focus {
+			outline: none !important;
+			border: 1px solid #020041a9;
+		}
+
+		.bio-buttons {
+			margin: 1.5rem auto 1rem;
+
+			button {
+				background-color: transparent;
+				color: white;
+				border: 2px solid white;
+				border-radius: 2rem;
+				margin: 0 auto;
+				padding: 0.6rem 3rem;
+				font-size: 1.3rem;
+				margin: 0 0.7rem;
+			}
+			button:hover {
+				background-color: rgba(189, 189, 189, 0.048);
+			}
+		}
+	}
+}
