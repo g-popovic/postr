@@ -8,10 +8,8 @@ export const Metamask = () => {
 		return new Web3(provider);
 	}
 	return (
-		<div>
-			<Web3ReactProvider getLibrary={getLibrary}>
-				<MetamaskButton />
-			</Web3ReactProvider>
-		</div>
+		<Web3ReactProvider getLibrary={getLibrary}>
+			<MetamaskButton />
+		</Web3ReactProvider>
 	);
 };
