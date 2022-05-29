@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Metamask } from '../Metamask/Metamask';
 import { Link } from 'react-router-dom';
+import { Metamask } from '../Metamask/Metamask';
 
 export function Navbar() {
 	const [showSidebar, setShowSidebar] = useState(false);
@@ -41,6 +41,10 @@ export function Navbar() {
 						<h5 className='text-white'>LOGO</h5>
 
 						<div className='d-flex flex-column sidebar-btn-containers'>
+							<div style={{ margin: 'auto' }}>
+								<Metamask />
+							</div>
+
 							<Link
 								to='/my-profile'
 								className='link-btn btn btn-outline-light'
