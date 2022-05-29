@@ -1,6 +1,7 @@
 html,
 body {
 	overscroll-behavior: none;
+	overflow: overlay;
 	padding: 0;
 	margin: 0;
 	background: rgb(3, 148, 255);
@@ -14,8 +15,8 @@ body {
 }
 
 .no-scroll {
-	height: 100%;
 	overflow: hidden;
+	max-height: 100vh;
 }
 
 .btn {
@@ -113,4 +114,28 @@ body {
 	to {
 		transform: none;
 	}
+}
+
+/**********************************SCROLLBAR**********************************/
+
+/* width */
+::-webkit-scrollbar {
+	width: 9px;
+	margin-right: 2px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+	background: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+	background: #888;
+	border-radius: 2rem;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+	background: #555;
 }
