@@ -20,19 +20,20 @@ export const MetamaskButton = ({ className }) => {
 		} else {
 			try {
 				await activate(injected);
-				const response = await axiosApp.get(`/auth/generate-nonce/${account}`);
+				const web3 = new Web3(window.ethereum);
+				const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+				const response = await axiosApp.get(`/auth/generate-nonce/${accounts[0]}`);
+
+				console.log({ acc: accounts[0] });
 
 				// we need to sign this to authenticate
 				const nonce = response.data.nonce;
 
-				const web3 = new Web3(window.ethereum);
-				const signedNonce = await web3.eth.personal.sign(nonce, account);
-
-				console.log({ signedNonce });
+				const signedNonce = await web3.eth.personal.sign(nonce, accounts[0]);
 
 				await axiosApp.post('/auth/verify-signature-and-login', {
 					signature: signedNonce,
-					address: account,
+					address: accounts[0],
 				});
 			} catch (err) {
 				console.log(err);

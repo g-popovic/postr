@@ -64,12 +64,10 @@ router.get('/generate-nonce/:address', async (req, res) => {
 router.post('/verify-signature-and-login', async (req, res) => {
 	const { signature, address } = req.body;
 
-	console.log({ signature, address });
-
 	try {
 		// Data validation
 		if (!signature || !address) {
-			res.sendStatus(400);
+			return res.sendStatus(400);
 		}
 
 		const existingUser = await User.findOne({
@@ -88,14 +86,12 @@ router.post('/verify-signature-and-login', async (req, res) => {
 		// Recover the address of the user who signed this message
 		const addressWhichSignedMessage = web3.eth.accounts.recover(nonce, signature);
 
-		console.log({ existingUser });
-
-		if (address === addressWhichSignedMessage) {
+		if (address === addressWhichSignedMessage.toLowerCase()) {
 			await signInUser(req, existingUser, address);
 
 			res.sendStatus(200);
 		} else {
-			res.sendStatus(401);
+			res.status(401).send('Invalid signature');
 		}
 	} catch (err) {
 		console.error(err);
