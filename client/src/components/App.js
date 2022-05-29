@@ -1,13 +1,12 @@
-import LandingPage from './landing-page/LandingPage';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { Metamask } from './Metamask/Metamask';
-import { ExplorePage } from './explore-page/ExplorePage';
-
 import React from 'react';
 import { UserProvider } from '../provider/UserContext';
 import { NewPost } from './new-post-page/NewPost';
 import { Chart } from './Statistics/Statistics';
 import { MyProfile } from './my-profile-page/MyProfile';
+import { Route, Routes, BrowserRouter as Router } from 'react-router-dom';
+import LandingPage from './landing-page/LandingPage';
+import { ExplorePage } from './explore-page/ExplorePage';
+import { Metamask } from './Metamask/Metamask';
 
 function App() {
 	return (

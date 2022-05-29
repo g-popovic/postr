@@ -1,12 +1,22 @@
 html,
 body {
 	overscroll-behavior: none;
+	overflow: overlay;
 	padding: 0;
+	margin: 0;
+	background: rgb(3, 148, 255);
+	background: linear-gradient(
+		20deg,
+		rgba(3, 148, 255, 1) -5%,
+		rgba(2, 0, 65, 1) 25%,
+		rgba(2, 0, 65, 1) 80%,
+		rgba(254, 0, 160, 1) 110%
+	);
 }
 
 .no-scroll {
-	height: 100%;
 	overflow: hidden;
+	max-height: 100vh;
 }
 
 .btn {
@@ -23,11 +33,14 @@ body {
 	align-items: center;
 	justify-content: space-between;
 	padding: 2.5rem 0;
+	margin: 0 auto;
 	margin-bottom: 2rem;
 
 	.logo {
 		color: white;
 		font-weight: 400;
+		text-decoration: none;
+		font-size: 2rem;
 	}
 
 	.menu-button {
@@ -81,7 +94,7 @@ body {
 
 	.sidebar-btn-containers {
 		margin-top: 3rem;
-		button {
+		.link-btn {
 			margin: 0.5rem 0;
 		}
 	}
@@ -103,4 +116,28 @@ body {
 	to {
 		transform: none;
 	}
+}
+
+/**********************************SCROLLBAR**********************************/
+
+/* width */
+::-webkit-scrollbar {
+	width: 9px;
+	margin-right: 2px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+	background: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+	background: #888;
+	border-radius: 2rem;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+	background: #555;
 }
