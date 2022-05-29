@@ -3,16 +3,24 @@ import { UserContext } from '../../provider/UserContext';
 import { Navbar } from '../Reusable/Navbar';
 import { Post } from '../Reusable/Post';
 import './explore.scss';
+import axios from 'axios';
 
 export function ExplorePage() {
 	const [data, setData] = useContext(UserContext);
 
+	async function getData() {
+		try {
+			await axios.get('http://localhost:3001/posts').then(res => {
+				console.log(res);
+			});
+		} catch (err) {
+			console.log(err);
+		}
+	}
+
 	useEffect(() => {
 		if (data.showLandingPageIntro) {
-			setTimeout(
-				() => setData({ ...data, showLandingPageIntro: false }),
-				2500
-			);
+			setTimeout(() => setData({ ...data, showLandingPageIntro: false }), 2500);
 		}
 	}, [data]);
 

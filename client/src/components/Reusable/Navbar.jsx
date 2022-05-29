@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Metamask } from '../Metamask/Metamask';
 import { Link } from 'react-router-dom';
 
 export function Navbar() {
@@ -34,52 +35,40 @@ export function Navbar() {
 					<div
 						onClick={onCloseSidebar}
 						className={
-							'sidebar-background-blur' +
-							(sidebarIsClosing ? ' closing' : '')
-						}
-					></div>
-					<div
-						className={
-							'sidebar-container' +
-							(sidebarIsClosing ? ' closing' : '')
-						}
-					>
+							'sidebar-background-blur' + (sidebarIsClosing ? ' closing' : '')
+						}></div>
+					<div className={'sidebar-container' + (sidebarIsClosing ? ' closing' : '')}>
 						<h5 className='text-white'>LOGO</h5>
 
 						<div className='d-flex flex-column sidebar-btn-containers'>
 							<Link
 								to='/my-profile'
 								className='link-btn btn btn-outline-light'
-								onClick={onCloseSidebar}
-							>
+								onClick={onCloseSidebar}>
 								MY PROFILE
 							</Link>
 							<Link
 								to='/explore'
 								className='link-btn btn btn-outline-light'
-								onClick={onCloseSidebar}
-							>
+								onClick={onCloseSidebar}>
 								EXPLORE
 							</Link>
 							<Link
 								to='/new-post'
 								className='link-btn btn btn-outline-light'
-								onClick={onCloseSidebar}
-							>
+								onClick={onCloseSidebar}>
 								NEW POST
 							</Link>
 							<Link
 								to='/statistics'
 								className='link-btn btn btn-outline-light'
-								onClick={onCloseSidebar}
-							>
+								onClick={onCloseSidebar}>
 								STATISTIC
 							</Link>
 							<Link
 								to='/'
 								className='link-btn btn btn-outline-light'
-								onClick={onCloseSidebar}
-							>
+								onClick={onCloseSidebar}>
 								HOME
 							</Link>
 						</div>
