@@ -30,7 +30,6 @@ export function MyProfile() {
         setTextValue(e.target.value);
     }
 
-
     function handleClick() {
         setEdit((prevValue) => !prevValue);
     }
@@ -80,7 +79,7 @@ export function MyProfile() {
                         </div>
                     )}
                 </div>
-                <div className="posts-container">
+                {/* <div className="posts-container">
                     {!post ? (
                         <h4 className="text-center text-light h-100">
                             Loading...
@@ -88,7 +87,7 @@ export function MyProfile() {
                     ) : (
                         post.map((post) => <Post data={post} />)
                     )}
-                </div>
+                </div> */}
             </div>
         </>
     );
